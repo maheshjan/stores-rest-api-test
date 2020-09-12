@@ -28,4 +28,5 @@ class StoreTest(BaseTest):
             item.save_to_db()
 
             self.assertEqual(store.items.count(), 1)
+
             self.assertEqual(store.items.first().name, 'test_item')
