@@ -3,5 +3,5 @@ Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
 uwsgi
-psycopg2.6.8
+# psycopg
 psycopg2-binary
