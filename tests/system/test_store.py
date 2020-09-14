@@ -60,7 +60,7 @@ class StoreTest(BaseTest):
                 response = client.get('/store/test')
 
                 self.assertEqual(response.status_code, 200)
-                self.assertDictEqual(d1={'id': 1, 'name': 'test', 'items': [{'name': 'test', 'price': 2.99}]},
+                self.assertDictEqual(d1={'id': 1, 'name': 'test', 'items': [{'id': 1, 'name': 'test', 'price': 2.99}]},
                                      d2=json.loads(response.data))
 
     def test_store_list(self):
@@ -79,5 +79,5 @@ class StoreTest(BaseTest):
                 ItemModel('test', 17.99, 1).save_to_db()
                 response = client.get('/stores')
 
-                self.assertDictEqual(d1={'stores': [{'id': 1, 'name': 'test', 'items': [{'name': 'test', 'price': 17.99}]}]},
+                self.assertDictEqual(d1={'stores': [{'id': 1, 'name': 'test', 'items': [{'id': 1, 'name': 'test', 'price': 17.99}]}]},
                                      d2=json.loads(response.data))
