@@ -52,7 +52,7 @@ class StoreTest(BaseTest):
             expected = {
                 'id': 1,
                 'name': 'test',
-                'items': [{'name': 'test_item', 'price': 19.99}]
+                'items': [{'id': 1, 'name': 'test_item', 'price': 19.99}]
             }
 
             self.assertDictEqual(store.json(), expected)
