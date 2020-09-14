@@ -53,31 +53,31 @@ class StoreTest(BaseTest):
                                      json.loads(response.data))
 
     def test_store_with_items_found(self):
-        with self.app() as c:
+        with self.app() as client:
             with self.app_context():
                 StoreModel('test').save_to_db()
                 ItemModel('test', 2.99, 1).save_to_db()
-                r = c.get('/store/test')
+                response = client.get('/store/test')
 
-                self.assertEqual(r.status_code, 200)
+                self.assertEqual(response.status_code, 200)
                 self.assertDictEqual(d1={'id': 1, 'name': 'test', 'items': [{'name': 'test', 'price': 2.99}]},
-                                     d2=json.loads(r.data))
+                                     d2=json.loads(response.data))
 
     def test_store_list(self):
-        with self.app() as c:
+        with self.app() as client:
             with self.app_context():
                 StoreModel('test').save_to_db()
-                r = c.get('/stores')
+                response = client.get('/stores')
 
                 self.assertDictEqual(d1={'stores': [{'id': 1, 'name': 'test', 'items': []}]},
-                                     d2=json.loads(r.data))
+                                     d2=json.loads(response.data))
 
     def test_store_with_items_list(self):
-        with self.app() as c:
+        with self.app() as client:
             with self.app_context():
                 StoreModel('test').save_to_db()
                 ItemModel('test', 17.99, 1).save_to_db()
-                r = c.get('/stores')
+                response = client.get('/stores')
 
                 self.assertDictEqual(d1={'stores': [{'id': 1, 'name': 'test', 'items': [{'name': 'test', 'price': 17.99}]}]},
-                                     d2=json.loads(r.data))
+                                     d2=json.loads(response.data))
